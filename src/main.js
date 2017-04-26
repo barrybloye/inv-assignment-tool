@@ -1,30 +1,18 @@
+// The Vue build version to load with the `import` command
+// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueResource from 'vue-resource'
 import App from './App'
-import AssignmentList from './components/AssignmentList'
-import AssignmentView from './components/AssignmentView'
+import router from './router'
 
-Vue.use(Router)
+Vue.use(VueResource)
 
-const router = new Router()
+Vue.config.productionTip = false
 
-router.map({
-  '/posts': {
-    component: AssignmentList
-  },
-
-  '/post/:id': {
-    component: AssignmentView
-  }
+/* eslint-disable no-new */
+new Vue({
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: { App }
 })
-
-router.beforeEach(function () {
-  window.scrollTo(0, 0)
-})
-
-router.redirect({
-  '*': '/posts'
-})
-
-router.start(App, '#app')
-

@@ -1,18 +1,25 @@
 <template>
-    <div id="wrapper">
-        <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="logo" :href="'#/'"><img src="./assets/logo-inviqa.png"></a>
-                </div>
-            </div>
-        </nav>
-        <div class="container">
-            <router-view
-                class="view"
-                keep-alive
-                transition
-                transition-mode="out-in">
+  <div id="wrapper">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="logo" :href="'#/posts'"><img src="./assets/logo-inviqa.png"></a>
+          <span>Blended Learning Tool</span>
+          <a href="/#/create" class="create">Create assignment <span class="glyphicon glyphicon-pencil"></span></a>
         </div>
+      </div>
+    </nav>
+    <div class="container">
+      <router-view
+          class="view"
+          keep-alive
+          transition
+          transition-mode="out-in">
+      </router-view>
     </div>
+  </div>
 </template>
+
+<style lang="scss">
+  @import "./scss/main.scss"
+</style>

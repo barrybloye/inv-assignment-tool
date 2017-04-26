@@ -1,8 +1,7 @@
 import PouchDB from 'pouchdb'
 import _ from 'lodash'
 
-const db = new PouchDB('vuedb')
-const remotedb = new PouchDB('http://localhost:5984/vuedb')
+const db = new PouchDB('testdb')
 const store = {}
 
 PouchDB.debug.disable()
@@ -45,18 +44,12 @@ store.reloadPosts = (obj, prop) => {
   store.findPosts().then(posts => {
     obj[prop] = _.map(posts, (post) => post)
   })
-  if (remotedb) {
-    db.sync(remotedb)
-  }
 }
 
 store.reloadComments = (obj, prop, postId) => {
   store.findCommentsByPostId(postId).then(comments => {
     obj[prop] = _.map(comments, (comment) => comment)
   })
-  if (remotedb) {
-    db.sync(remotedb)
-  }
 }
 
 window.PouchDB = PouchDB
