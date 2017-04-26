@@ -1,14 +1,11 @@
 <template>
   <div id="wrapper">
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="logo" :href="'#/posts'"><img src="./assets/logo-inviqa.png"></a>
-          <span>Blended Learning Tool</span>
-          <a href="/#/create" class="create">Create assignment <span class="glyphicon glyphicon-pencil"></span></a>
-        </div>
-      </div>
-    </nav>
+    <header class="header">
+      <a class="logo" :href="'#/posts'">
+        <span>Blended Learning Tool</span>
+      </a>
+      <a href="/#/create" class="create">Create assignment</a>
+    </header>
     <div class="container">
       <router-view
           class="view"

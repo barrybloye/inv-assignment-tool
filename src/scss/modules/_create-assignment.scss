@@ -1,0 +1,17 @@
+.create-assignment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    padding: 1.5rem 3rem;
+    padding-top: 80px;
+
+    label {
+        display: block;
+    }
+
+    form {
+        > div {
+            margin-bottom: 1rem;
+        }
+    }
+}

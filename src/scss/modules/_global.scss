@@ -1,41 +1,7 @@
-$light-gray: #e8e8e8;
-
 body {
     background: $light-gray;
+    margin: 0;
 }
-
-.logo {
-    img {
-        max-width: 70px;
-    }
-}
-
-.navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 100;
-
-    &-header {
-        width: 100%;
-
-        span {
-            font-size: 12px;
-        }
-    }
-
-    .create {
-        float: right;
-        margin-top: 14px;
-        font-size: 12px;
-        color: $black;
-
-        .glyphicon {
-            margin-left: 10px;
-        }
-    }
-}
-
 
 wrapper {
     > .container {
