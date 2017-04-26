@@ -1,32 +1,74 @@
 .assignment {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
-  padding: 1.5rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    padding: 1.5rem 3rem;
+    padding-top: 60px;
 
-  &__summary {
-    grid-column: span 2;
-    padding: 1.5rem 0;
-  }
-  &__input {
-    position: relative;
-    min-height: 250px;
-    padding: 1.5rem 3rem;
-    border: 2px solid $c-section-border;
-    border-radius: 10px;
-  }
-  &__output {
-    padding: 1.5rem 3rem;
-    border: 2px solid $c-section-border;
-    border-radius: 10px;
-  }
-  &__output-container {
-    padding: 1.5rem 0;
-  }
-  &__feedback {
-    grid-column: span 2;
-    background-color: $c-alert-success;
-    padding: 1.5rem 3rem;
-    border-radius: 10px;
-  }
+    &__summary {
+        grid-column: span 2;
+        padding: 1.5rem 0;
+
+        p {
+            font-size: 16px;
+            line-height: 22px;
+            max-width: 600px
+        }
+    }
+
+    &__input {
+        position: relative;
+        min-height: 250px;
+        padding: 1.5rem 3rem;
+        border: 2px solid $c-section-border;
+        border-radius: 10px;
+        grid-column: span 2;
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            min-height: 300px;
+        }
+
+        form {
+            margin-top: 0;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        pre {
+            min-height: 300px;
+        }
+    }
+
+    &__output {
+        padding: 1.5rem 3rem;
+        border: 2px solid $c-section-border;
+        border-radius: 10px;
+
+      h2 {
+          margin-bottom: 10px;
+      }
+
+      .render {
+          min-height: 330px;
+          background: white;
+          border: 1px solid silver;
+      }
+    }
+
+    &__output-container {
+        padding: 1.5rem 0;
+    }
+
+    &__feedback {
+        grid-column: span 2;
+        background-color: $c-alert-success;
+        padding: 1.5rem 3rem;
+        border-radius: 10px;
+    }
 }
