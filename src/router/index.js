@@ -1,27 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Users from '@/components/Users'
 import AssignmentList from '@/components/AssignmentList'
 import AssignmentView from '@/components/AssignmentView'
+import CreateAssignment from '@/components/CreateAssignment'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'List of assignments',
+      name: 'List of Assignments',
+      path: '/assignments',
       component: AssignmentList
     },
     {
-      path: '/assignments/:id',
-      name: 'AssignmentView',
+      name: 'View Assignment',
+      path: '/assignment/:id',
       component: AssignmentView
     },
     {
-      path: '/users',
-      name: 'Users',
-      component: Users
+      name: 'Create Assignment',
+      path: '/create',
+      component: CreateAssignment
+    },
+    {
+      path: '*',
+      redirect: '/assignments'
     }
   ]
 })
