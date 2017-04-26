@@ -1,12 +1,8 @@
 <template>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-body single-assignment">
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p><br />
-        <a class="btn btn-default" :href="'#/assignments/' + post._id">View</a>
-      </div>
-    </div>
+  <div class="panel panel-default">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.content }}</p><br />
+    <a class="btn btn-default" :href="'#/assignment/' + post._id">View</a>
   </div>
 </template>
 

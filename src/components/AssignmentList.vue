@@ -1,63 +1,50 @@
 <template>
-  <div>
-    <main class="assignment-list">
+  <main class="assignment-list">
 
-      <header class="assignment-list__summary">
-        <h1>My assignments</h1>
-        <div class="row">
-          <br /><br />
-          <post
-                  v-for="post in posts"
-                  :post="post"
-                  :key="post.id">
-          </post>
-        </div>
-      </header>
+    <header class="assignment-list__summary">
+      <h1>My assignments</h1>
+      <div class="row">
+        <post
+            v-for="post in posts"
+            :post="post"
+            :key="post">
+        </post>
+      </div>
+    </header>
 
-      <div class="assignment-list__feedback">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h2>Progress</h2>
-            <p>Feedback about your submission and progress</p>
-          </div>
+    <div class="assignment-list__feedback">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Progress</h2>
+          <p>Feedback about your submission and progress</p>
         </div>
       </div>
+    </div>
 
-      <div class="assignment-list__assignments">
+    <div class="assignment-list__assignments">
+      <div class="panel panel-default">
+        <h2>In progress</h2>
+        <ol>
+          <li><a href="#">Code challenge</a></li>
+        </ol>
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <h2>In progress</h2>
-            <ol>
-              <li><a href="#">Code challenge</a></li>
-            </ol>
+        <h2>To-do</h2>
+        <ol>
+          <li><a href="#">Simple assignment</a></li>
+          <li><a href="#">Code assignment</a></li>
+          <li><a href="#">Multiple-choice test</a></li>
+        </ol>
 
-            <h2>To-do</h2>
-            <ol>
-              <li><a href="#">Simple assignment</a></li>
-              <li><a href="#">Code assignment</a></li>
-              <li><a href="#">Multiple-choice test</a></li>
-            </ol>
-
-            <h2>Complete</h2>
-            <ol>
-              <li><a href="#">Simple assignment</a></li>
-              <li><a href="#">Code assignment</a></li>
-            </ol>
-          </div>
-        </div>
+        <h2>Complete</h2>
+        <ol>
+          <li><a href="#">Simple assignment</a></li>
+          <li><a href="#">Code assignment</a></li>
+        </ol>
       </div>
+    </div>
 
-    </main>
-  </div>
+  </main>
 </template>
-
-
-
-
-<style>
-
-</style>
 
 <script>
   import Post from '../components/Assignment'
