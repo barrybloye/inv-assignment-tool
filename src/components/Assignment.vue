@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: 'Post',
+    name: 'Assignment',
     props: {
       post: Object
     }

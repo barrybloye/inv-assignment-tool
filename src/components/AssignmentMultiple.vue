@@ -1,48 +1,55 @@
 <template>
   <div>
-    <form>
-      <div>
-        <p>Multiple choice question 1?</p><br />
-        <label>
-          <input type="radio" name="q4" class="grey"></input>Answer 1</label><br />
-        <label>
-          <input type="radio" name="q4" class="black"></input>Answer 2</label><br />
-        <label>
-          <input type="radio" name="q4" class="white"></input>Answer 3</label><br />
+    <div v-for="question in post.questions">{{ question.question }} -
+      <div v-for="answer in question.answers">
+      {{ answer.answer }}
       </div>
-      <br />
-      <div>
-        <p>Multiple choice question 2?</p><br />
-        <label>
-          <input type="radio" name="q3" class="grey"></input>Answer 1</label><br />
-        <label>
-          <input type="radio" name="q3" class="black"></input>Answer 2</label><br />
-        <label>
-          <input type="radio" name="q3" class="white"></input>Answer 3</label><br />
-      </div>
-      <br />
-      <div>
-        <p>Multiple choice question 3?</p><br />
-        <label>
-          <input type="radio" name="q2" class="grey"></input>Answer 1</label><br />
-        <label>
-          <input type="radio" name="q2" class="black"></input>Answer 2</label><br />
-        <label>
-          <input type="radio" name="q2" class="white"></input>Answer 3</label><br />
-      </div>
-      <br />
-      <button class="submit4">Submit</button>
-    </form>
-    <div></div>
+    </div>
+
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'assignment-multiple',
+  import store from '../store'
 
+  export default {
     props: {
       code: Object
+    },
+
+    data () {
+      return {
+        _id: '',
+        post: '',
+        content: '',
+        comments: '',
+        type: '',
+        createdAt: '',
+        postId: '',
+        questions: '',
+        answerrs: ''
+      }
+    },
+
+    methods: {
+      submit () {
+        console.log(this.content)
+
+        const data = {
+          content: this.content,
+          type: 'comment',
+          createdAt: new Date().toJSON(),
+          postId: this.post._id
+        }
+        store.create(data).then(() => {
+          store.reloadComments(this, 'comments', this.post._id)
+        })
+        this.content = ''
+      }
+    },
+
+    mounted () {
+      store.findPostById(this.$route.params.id).then(post => { this.post = post })
     }
   }
 </script>

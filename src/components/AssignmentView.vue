@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import Post from '../components/Assignment'
 import Comment from '../components/Comment'
 import AssignmentText from '../components/AssignmentText'
 import AssignmentMultiple from '../components/AssignmentMultiple'
@@ -52,7 +51,6 @@ import store from '../store'
 
 export default {
   components: {
-    Post,
     Comment,
     AssignmentText,
     AssignmentCode,
