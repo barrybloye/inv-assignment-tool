@@ -1,3 +1,6 @@
+@import '../../node_modules/muse-ui/dist/muse-ui';
+@import '../../node_modules/muse-ui/dist/theme-default';
+
 /* mixins */
 @import 'mixins/button';
 
@@ -12,3 +15,4 @@
 @import 'modules/header';
 @import 'modules/panel';
 @import 'modules/create-assignment';
+@import 'modules/global';

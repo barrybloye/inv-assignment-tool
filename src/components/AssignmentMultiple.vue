@@ -1,11 +1,16 @@
 <template>
   <div>
-    <div v-for="question in post.questions">{{ question.question }} -
-      <div v-for="answer in question.answers">
-      {{ answer.answer }}
-      </div>
-    </div>
+    <mu-paper class="paper-padded" :zDepth="2">
 
+      <div v-for="(question, index) in post.questions" class="questions__single">
+        <h3>{{ question.question }}</h3>
+        <div v-for="answer in question.answers">
+        <mu-radio :label="answer.answer" :name="index" nativeValue="simple1" v-model="value" class="demo-radio" />
+        </div>
+      </div>
+
+      <mu-raised-button v-on:click="submit" label="Submit Assignment" primary />
+    </mu-paper>
   </div>
 </template>
 

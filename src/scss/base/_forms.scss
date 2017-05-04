@@ -29,8 +29,3 @@ textarea {
     width: 100%;
     border: 1px solid $c-input-border;
 }
-
-button,
-.button {
-    @include button;
-}

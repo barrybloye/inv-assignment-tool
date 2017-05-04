@@ -5,64 +5,54 @@
       <div class="col-md-12">
         <h1>Create Assignment</h1>
       </div>
+      <mu-paper class="demo-paper" :zDepth="2">
       <div class="panel">
           <div>
-            <label for="types">Type of assignment</label>
-            <select name="types" id="types" v-model="assignmentType" v-on:change="checkType">
-              <option v-for="option in assignmentOptions" :value="option.value">
-                {{ option.text }}
-              </option>
-            </select>
-          </div>
-
-          <div id="multipleChoice">
-            <div v-for="(question, index) in questions">
-              <label>Question</label>
-              <input type="text" v-model="question.question" placeholder="Question">
-
-              <ul>
-                <li v-for="(answers, index) in question.answers">
-                  <label>Answer</label>
-                  {{ index }}<input type="text" v-model="answers.answer"><br />
-                </li>
-              </ul>
-
-              <button v-on:click="addAnswer">+ Answer</button>
-              <div><button v-on:click="deleteQuestion(question)"> x Q </button></div>
-            </div>
-
-            <button v-on:click="addQuestion">Add question</button>
+            <mu-text-field v-model="title" hintText="Enter title" fullWidth /><br/>
           </div>
 
           <div>
-            <label for="types">Title</label>
-            <input type="text" class="form-control" v-model="title" placeholder="Enter title">
+            <mu-text-field v-model="content" hintText="Assignment description" multiLine :rows="2" :rowsMax="10" fullWidth />
           </div>
 
           <div>
-            <label for="types">Content</label>
-            <textarea class="form-control" v-model="content" placeholder="Enter content">
-            </textarea>
+              <mu-select-field id="types" v-model="assignmentType" :labelFocusClass="['label-foucs']" label="Type of assignment">
+                  <mu-menu-item v-for="option in assignmentOptions" :value="option.value" :title="option.text" :key="option" />
+              </mu-select-field>
           </div>
 
-          <button class="button btn-default" v-on:click="submit">Submit</button>
+          <div id="multipleChoice" class="multiple-choice">
+              <div v-for="(question, index) in questions">
+                  <div class="multiple-choice__question">
+                      <mu-text-field v-model="question.question" hintText="Question" fullWidth />
+                  </div>
+
+                  <ul class="multiple-choice__answers">
+                      <li v-for="(answers, index) in question.answers">
+                          <mu-text-field v-model="answers.answer" hintText="Answer" fullWidth />
+                          <span v-on:click="deleteAnswer(question, answers)" class="multiple-choice__remove-answer">x</span>
+                      </li>
+                  </ul>
+
+                  <mu-raised-button v-on:click="addAnswer(question)" class="multiple-choice__add-answer" label="Add Answer" />
+                  <mu-raised-button v-on:click="deleteQuestion(question)" class="multiple-choice__remove-question" label="Remove Question" />
+              </div>
+
+              <mu-raised-button v-on:click="addQuestion" label="Add question" class="multiple-choice__add-question" secondary />
+          </div>
+
+          <mu-raised-button v-on:click="submit" label="Submit Assignment" primary />
       </div>
+      </mu-paper>
     </div>
     <pre>{{ $data | json }}</pre>
   </main>
 </template>
 
 <script>
-  import Post from '../components/Assignment'
-  import Question from '../components/Question'
   import store from '../store'
 
   export default {
-    components: {
-      Post,
-      Question
-    },
-
     data () {
       return {
         id: '',
@@ -76,14 +66,18 @@
           { text: 'Multiple Choice', value: 'multiple' },
           { text: 'Code', value: 'code' }
         ],
-        questions: [],
-        newAnswer: {},
-        posts: []
+        questions: []
       }
     },
 
-    created () {
-      store.reloadPosts(this, 'posts')
+    watch: {
+      assignmentType: function () {
+        if (this.assignmentType === 'multiple') {
+          document.getElementById('multipleChoice').style.display = 'block'
+        } else {
+          document.getElementById('multipleChoice').style.display = 'none'
+        }
+      }
     },
 
     methods: {
@@ -103,15 +97,6 @@
           store.reloadPosts(this, 'posts')
           location.href = '/'
         })
-
-        console.log(data)
-      },
-
-      checkType () {
-        var thetype = document.getElementById('types')
-        if (thetype.options[thetype.selectedIndex].value === 'multiple') {
-          console.log('text')
-        }
       },
 
       addQuestion () {
@@ -121,18 +106,18 @@
         })
       },
 
-      addAnswer () {
-        this.questions.push({ 'answer': '' })
-      },
-
       deleteQuestion (question) {
-        console.log('deleting question')
         this.questions.splice(this.questions.indexOf(question), 1)
       },
 
-      deleteAnswer (answer) {
-        console.log('deleting answer')
-        this.answers.splice(this.answers.indexOf(answer), 1)
+      addAnswer (question) {
+        console.log(question.answers)
+        question.answers.push({ 'answer': '' })
+      },
+
+      deleteAnswer (question, answers) {
+        console.log(question.answers)
+        question.answers.splice(question.answers.indexOf(answers), 1)
       }
     }
   }

@@ -1,9 +1,12 @@
 <template>
-  <div class="panel panel-default">
-    <h3>{{ post.title }}</h3>
-    <p>{{ post.content }}</p><br />
-    <a class="btn btn-default" :href="'#/assignment/' + post._id">View</a>
-  </div>
+  <mu-paper class="demo-paper" :zDepth="2">
+    <div class="panel panel-default">
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.content }}</p><br />
+      <a class="btn btn-default" :href="'#/assignment/' + post._id">View</a>
+    </div>
+  </mu-paper>
+
 </template>
 
 <script>
