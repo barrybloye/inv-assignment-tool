@@ -1,11 +1,11 @@
 <template>
-  <div class="col-md-12">
+  <mu-paper class="demo-paper" :zDepth="2">
     <div class="panel panel-default">
       <div class="panel-body">
         <p>{{ comment.content }}</p>
       </div>
     </div>
-  </div>
+  </mu-paper>
 </template>
 
 <script>

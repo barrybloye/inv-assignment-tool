@@ -3,18 +3,6 @@
     <header class="assignment__summary">
       <h1>{{ post.title }}</h1>
       <p>{{ post.content }}</p>
-      <!-- Commenting out for demo
-      <ul>
-          <li>An unordered list</li>
-          <li>Second item</li>
-          <li>Third item</li>
-      </ul>
-      <ol>
-          <li>An ordered list</li>
-          <li>Second item</li>
-          <li>Third item</li>
-      </ol>
-      -->
     </header>
 
     <assignment-text v-if="post.assignmentType === 'text'"></assignment-text>
@@ -33,14 +21,15 @@
 
     <div class="row">
       <h3 class="page-header">Leave your comment</h3>
-
+      <mu-paper class="demo-paper" :zDepth="2">
       <div class="panel">
         <textarea class="form-control" v-model="content" placeholder="Enter content"></textarea>
-        <button class="btn btn-default" v-on:click="submit">Submit</button>
+        <mu-raised-button v-on:click="submit" label="Submit" primary />
       </div>
+      </mu-paper>
     </div>
   </main>
-</template>
+</template>ocke
 
 <script>
 import Comment from '../components/Comment'

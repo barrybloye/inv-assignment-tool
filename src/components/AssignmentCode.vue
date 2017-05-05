@@ -16,7 +16,7 @@
     </mu-tabs>
 
     <div class="assignment__input" v-if="activeTab === 'tab1'">
-      <editor v-model="code" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
+      <editor v-model="code1" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
     </div>
 
     <div class="assignment__input" v-if="activeTab === 'tab2'">

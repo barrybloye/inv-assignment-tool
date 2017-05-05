@@ -21,8 +21,8 @@
               </mu-select-field>
           </div>
 
-          <div id="multipleChoice" class="multiple-choice">
-              <div v-for="(question, index) in questions">
+          <div id="addMultipleChoice" class="multiple-choice">
+              <div v-for="question in questions">
                   <div class="multiple-choice__question">
                       <mu-text-field v-model="question.question" hintText="Question" fullWidth />
                   </div>
@@ -41,11 +41,28 @@
               <mu-raised-button v-on:click="addQuestion" label="Add question" class="multiple-choice__add-question" secondary />
           </div>
 
+          <div id="addCodingExercise" class="multiple-choice">
+              <div v-for="file in files">
+                  <div class="file-type__file">
+                      <mu-text-field v-model="file.fileName" hintText="File name" fullWidth />
+
+                      <mu-select-field v-model="file.fileType" :labelFocusClass="['label-foucs']" label="File type">
+                          <mu-menu-item v-for="option in fileTypes" :value="option.value" :title="option.text" :key="option" />
+                      </mu-select-field>
+                  </div>
+                  <div class="file-type__controls">
+                      <mu-raised-button v-on:click="deleteFile(file)" label="Remove File" />
+                  </div>
+              </div>
+
+              <mu-raised-button v-on:click="addFile" label="Add file" class="multiple-choice__add-question" secondary />
+
+          </div>
+
           <mu-raised-button v-on:click="submit" label="Submit Assignment" primary />
       </div>
       </mu-paper>
     </div>
-    <pre>{{ $data | json }}</pre>
   </main>
 </template>
 
@@ -61,21 +78,35 @@
         createdAt: '',
         type: '',
         assignmentType: '',
+        questions: [],
+        files: [],
         assignmentOptions: [
           { text: 'Text', value: 'text' },
           { text: 'Multiple Choice', value: 'multiple' },
           { text: 'Code', value: 'code' }
         ],
-        questions: []
+        fileTypes: [
+          { text: 'php', value: 'php' },
+          { text: 'js', value: 'js' },
+          { text: 'scss', value: 'scss' },
+          { text: 'html', value: 'html' },
+          { text: 'twig', value: 'twig' }
+        ]
       }
     },
 
     watch: {
       assignmentType: function () {
         if (this.assignmentType === 'multiple') {
-          document.getElementById('multipleChoice').style.display = 'block'
+          document.getElementById('addMultipleChoice').style.display = 'block'
         } else {
-          document.getElementById('multipleChoice').style.display = 'none'
+          document.getElementById('addMultipleChoice').style.display = 'none'
+        }
+
+        if (this.assignmentType === 'code') {
+          document.getElementById('addCodingExercise').style.display = 'block'
+        } else {
+          document.getElementById('addCodingExercise').style.display = 'none'
         }
       }
     },
@@ -90,6 +121,8 @@
           'content': this.content,
           'assignmentType': this.assignmentType,
           'questions': this.questions,
+          'files': this.files,
+          'exercises': this.exercises,
           'createdAt': new Date().toJSON()
         }
 
@@ -118,6 +151,17 @@
       deleteAnswer (question, answers) {
         console.log(question.answers)
         question.answers.splice(question.answers.indexOf(answers), 1)
+      },
+
+      addFile () {
+        this.files.push({
+          fileName: this.files.fileName,
+          fileType: this.files.fileType
+        })
+      },
+
+      deleteFile (file) {
+        this.files.splice(this.files.indexOf(file), 1)
       }
     }
   }

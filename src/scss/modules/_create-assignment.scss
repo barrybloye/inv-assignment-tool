@@ -9,13 +9,63 @@
         display: block;
     }
 
-    form {
-        > div {
-            margin-bottom: 1rem;
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    #addMultipleChoice {
+        display: none;
+    }
+
+    #addCodingExercise {
+        display: none;
+    }
+
+    .multiple-choice {
+        li {
+            position: relative;
         }
 
-        textarea {
-            width: calc(100% - 20px);
+        &__add-question {
+            margin: 20px 0;
+        }
+
+        &__remove-question {
+            float: right;
+        }
+
+        &__remove-answer {
+            position: absolute;
+            right: 9px;
+            top: 7px;
+            display: block;
+            font-size: 1.5rem;
+            background: white;
+            padding: 4px 10px;
+        }
+
+        &__question {
+            background: $highlight;
+            padding: 0 10px;
+        }
+
+        &__answers {
+            background: $highlight-invert;
+            margin-bottom: 10px;
+        }
+    }
+
+    .file-type {
+        &__file {
+            background: $highlight;
+            padding: 0 10px;
+            margin-bottom: 10px;
+        }
+
+        &__controls {
+            clear: both;
+            margin-bottom: 20px;
         }
     }
 }
