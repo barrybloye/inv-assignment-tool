@@ -1,45 +1,25 @@
 <template>
-  <div>
+  <div class="assigment__code">
     <mu-tabs :value="activeTab" @change="handleTabChange">
-      <mu-tab value="tab1" title="View">
-
-      </mu-tab>
-      <mu-tab value="tab2" title="Controller">
-
-      </mu-tab>
-      <mu-tab value="tab3" title="Model">
-
-      </mu-tab>
-      <mu-tab value="tab4" title="Javascript">
-
+      <mu-tab v-for="(file, index) in $parent.post.files" :value="index" :key="file" >
+          {{ file.fileName }}.{{ file.fileType }}
       </mu-tab>
     </mu-tabs>
 
-    <div class="assignment__input" v-if="activeTab === 'tab1'">
-      <editor v-model="code1" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
-    </div>
-
-    <div class="assignment__input" v-if="activeTab === 'tab2'">
-      <editor v-model="code2" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
-    </div>
-
-    <div class="assignment__input" v-if="activeTab === 'tab3'">
-      <editor v-model="code3" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
-    </div>
-
-    <div class="assignment__input" v-if="activeTab === 'tab4'">
-      <editor v-model="code4" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
+    <div class="assignment__code-tab" v-for="(file, index) in $parent.post.files" :key="file" v-bind:id="index">
+      <editor v-model="form[file.id]" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
     </div>
 
     <br />
     <mu-raised-button label="Submit" secondary />
-    <mu-raised-button v-on:click="saveProgress" label="Save Progress" primary />
+    <mu-raised-button label="Save Progress" primary />
 
     <!--<div class="assignment__feedback">-->
       <!--<h2>Success!</h2>-->
       <!--<p>Feedback about your submission and progress</p>-->
     <!--</div>-->
-    <pre>{{ $data | json }}</pre>
+    <pre>{{ $data }}</pre>
+    <pre>{{ $parent.post }}</pre>
   </div>
 
 </template>
@@ -76,6 +56,14 @@
       },
       handleTabChange (val) {
         this.activeTab = val
+
+        var elements = document.getElementsByClassName('assignment__code-tab')
+
+        for (var i = 0, length = elements.length; i < length; i++) {
+          elements[i].style.display = 'none'
+        }
+
+        document.getElementById(this.activeTab).style.display = 'block'
       },
       editorInit: function () {
         require('../../node_modules/brace/theme/monokai')
@@ -89,6 +77,9 @@
       editor2: require('vue2-ace-editor'),
       editor3: require('vue2-ace-editor'),
       editor4: require('vue2-ace-editor')
+    },
+    mounted () {
+      document.getElementById(0).style.display = 'block'
     }
   }
 </script>
