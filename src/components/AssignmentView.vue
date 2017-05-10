@@ -23,8 +23,8 @@
       <h3 class="page-header">Leave your comment</h3>
       <mu-paper class="demo-paper" :zDepth="2">
       <div class="panel">
-        <textarea class="form-control" v-model="content" placeholder="Enter content"></textarea>
-        <mu-raised-button v-on:click="submit" label="Submit" primary />
+        <mu-text-field v-model="content" hintText="Leave your comment" multiLine :rows="2" :rowsMax="10" fullWidth />
+        <mu-raised-button v-on:click="submit" label="Submit" secondary />
       </div>
       </mu-paper>
     </div>

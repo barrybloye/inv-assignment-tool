@@ -3,7 +3,7 @@
     <h2>Input</h2>
     <form>
       <textarea class="input-code"></textarea>
-      <button type="submit" class="submit-code">Submit</button>
+      <mu-raised-button label="Submit" primary />
     </form>
   </div>
 </template>

@@ -13,34 +13,38 @@
     </header>
 
     <div class="assignment-list__feedback">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h2>Progress</h2>
-          <p>Feedback about your submission and progress</p>
+      <mu-paper class="demo-paper" :zDepth="2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>Progress</h2>
+            <p>Feedback about your submission and progress</p>
+          </div>
         </div>
-      </div>
+      </mu-paper>
     </div>
 
     <div class="assignment-list__assignments">
-      <div class="panel panel-default">
-        <h2>In progress</h2>
-        <ol>
-          <li><a href="#">Code challenge</a></li>
-        </ol>
+      <mu-paper class="demo-paper" :zDepth="2">
+        <div class="panel panel-default">
+          <h2>In progress</h2>
+          <ol>
+            <li><a href="#">Code challenge</a></li>
+          </ol>
 
-        <h2>To-do</h2>
-        <ol>
-          <li><a href="#">Simple assignment</a></li>
-          <li><a href="#">Code assignment</a></li>
-          <li><a href="#">Multiple-choice test</a></li>
-        </ol>
+          <h2>To-do</h2>
+          <ol>
+            <li><a href="#">Simple assignment</a></li>
+            <li><a href="#">Code assignment</a></li>
+            <li><a href="#">Multiple-choice test</a></li>
+          </ol>
 
-        <h2>Complete</h2>
-        <ol>
-          <li><a href="#">Simple assignment</a></li>
-          <li><a href="#">Code assignment</a></li>
-        </ol>
-      </div>
+          <h2>Complete</h2>
+          <ol>
+            <li><a href="#">Simple assignment</a></li>
+            <li><a href="#">Code assignment</a></li>
+          </ol>
+        </div>
+      </mu-paper>
     </div>
   </main>
 </template>

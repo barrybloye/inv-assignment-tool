@@ -38,10 +38,10 @@
                   <mu-raised-button v-on:click="deleteQuestion(question)" class="multiple-choice__remove-question" label="Remove Question" />
               </div>
 
-              <mu-raised-button v-on:click="addQuestion" label="Add question" class="multiple-choice__add-question" secondary />
+              <mu-raised-button v-on:click="addQuestion" label="Add question" class="multiple-choice__add-question" primary />
           </div>
 
-          <div id="addCodingExercise" class="multiple-choice">
+          <div id="addCodingExercise" class="coding-assignment">
               <div v-for="(file, index) in files">
                   <div class="file-type__file">
                       <mu-text-field v-model="file.fileName" hintText="File name" fullWidth />
@@ -55,11 +55,11 @@
                   </div>
               </div>
 
-              <mu-raised-button v-on:click="addFile" label="Add file" class="multiple-choice__add-question" secondary />
+              <mu-raised-button v-on:click="addFile" label="Add file" class="multiple-choice__add-question" primary />
 
           </div>
 
-          <mu-raised-button v-on:click="submit" label="Submit Assignment" primary />
+          <mu-raised-button v-on:click="submit" label="Submit Assignment" secondary />
       </div>
       </mu-paper>
     </div>

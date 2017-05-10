@@ -4,7 +4,7 @@
       <a class="logo" :href="'#/posts'">
         <span>Blended Learning Tool</span>
       </a>
-      <a href="/#/create" class="create">Create assignment</a>
+      <mu-raised-button href="/#/create" class="link__create-assignment" label="Create assignment" primary />
     </header>
     <div class="container">
       <router-view

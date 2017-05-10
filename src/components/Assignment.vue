@@ -3,7 +3,7 @@
     <div class="panel panel-default">
       <h3>{{ post.title }}</h3>
       <p>{{ post.content }}</p><br />
-      <a class="btn btn-default" :href="'#/assignment/' + post._id">View</a>
+      <mu-raised-button label="View" :href="'#/assignment/' + post._id" secondary />
     </div>
   </mu-paper>
 

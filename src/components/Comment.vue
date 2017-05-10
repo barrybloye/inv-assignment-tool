@@ -2,7 +2,7 @@
   <mu-paper class="demo-paper" :zDepth="2">
     <div class="panel panel-default">
       <div class="panel-body">
-        <p>{{ comment.content }}</p>
+        <pre>{{ comment.content }}</pre>
       </div>
     </div>
   </mu-paper>
