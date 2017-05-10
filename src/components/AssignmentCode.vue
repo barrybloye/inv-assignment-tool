@@ -29,7 +29,7 @@
 
     data () {
       return {
-        activeTab: 'tab1',
+        activeTab: 0,
         files: this.getFileModel()
       }
     },
