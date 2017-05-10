@@ -42,7 +42,7 @@
           </div>
 
           <div id="addCodingExercise" class="multiple-choice">
-              <div v-for="file in files">
+              <div v-for="(file, index) in files">
                   <div class="file-type__file">
                       <mu-text-field v-model="file.fileName" hintText="File name" fullWidth />
 
@@ -68,6 +68,7 @@
 
 <script>
   import store from '../store'
+  import _ from 'lodash'
 
   export default {
     data () {
@@ -154,9 +155,14 @@
       },
 
       addFile () {
+        var fileIndex = _.findLastIndex(this.files)
+        fileIndex += 2
+
         this.files.push({
+          fileId: 'file-' + fileIndex,
           fileName: this.files.fileName,
-          fileType: this.files.fileType
+          fileType: this.files.fileType,
+          fileContent: ''
         })
       },
 

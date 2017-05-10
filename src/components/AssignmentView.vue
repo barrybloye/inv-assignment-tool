@@ -29,7 +29,7 @@
       </mu-paper>
     </div>
   </main>
-</template>ocke
+</template>
 
 <script>
 import Comment from '../components/Comment'

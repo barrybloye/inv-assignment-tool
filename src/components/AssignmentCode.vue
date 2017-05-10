@@ -7,25 +7,22 @@
     </mu-tabs>
 
     <div class="assignment__code-tab" v-for="(file, index) in $parent.post.files" :key="file" v-bind:id="index">
-      <editor v-model="form[file.id]" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
+      <editor v-model="files[file.fileId]" @init="editorInit();" lang="php" theme="monokai" width="600" height="380"></editor>
     </div>
 
-    <br />
     <mu-raised-button label="Submit" secondary />
-    <mu-raised-button label="Save Progress" primary />
 
     <!--<div class="assignment__feedback">-->
       <!--<h2>Success!</h2>-->
       <!--<p>Feedback about your submission and progress</p>-->
     <!--</div>-->
-    <pre>{{ $data }}</pre>
-    <pre>{{ $parent.post }}</pre>
   </div>
 
 </template>
 
 <script>
   import store from '../store'
+  import _ from 'lodash'
 
   export default {
     name: 'assignment-code',
@@ -33,10 +30,7 @@
     data () {
       return {
         activeTab: 'tab1',
-        code1: '',
-        code2: '',
-        code3: '',
-        code4: ''
+        files: this.getFileModel()
       }
     },
     methods: {
@@ -44,10 +38,7 @@
         e.preventDefault()
 
         const data = {
-          'code1': this.code1,
-          'code2': this.code2,
-          'code3': this.code3,
-          'code4': this.code4
+          files: this.getFileModel()
         }
 
         store.create(data).then(results => {
@@ -67,16 +58,32 @@
       },
       editorInit: function () {
         require('../../node_modules/brace/theme/monokai')
-        require('../../node_modules/brace/mode/html')
-        require('../../node_modules/brace/mode/javascript')
         require('../../node_modules/brace/mode/php')
+      },
+      getFileId () {
+        var fileId = []
+
+        _.forEach(this.$parent.post.files, function (value) {
+          fileId.push(value.fileId)
+        })
+
+        return fileId
+      },
+      getFileContent () {
+        var fileContent = []
+
+        _.forEach(this.$parent.post.files, function (value) {
+          fileContent.push(value.fileContent)
+        })
+
+        return fileContent
+      },
+      getFileModel () {
+        return _.zipObject(this.getFileId(), this.getFileContent())
       }
     },
     components: {
-      editor: require('vue2-ace-editor'),
-      editor2: require('vue2-ace-editor'),
-      editor3: require('vue2-ace-editor'),
-      editor4: require('vue2-ace-editor')
+      editor: require('vue2-ace-editor')
     },
     mounted () {
       document.getElementById(0).style.display = 'block'

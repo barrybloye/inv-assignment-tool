@@ -42,7 +42,6 @@
         </ol>
       </div>
     </div>
-
   </main>
 </template>
 
